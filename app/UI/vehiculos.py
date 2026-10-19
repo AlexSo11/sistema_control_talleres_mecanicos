@@ -1,3 +1,5 @@
+"""Interfaz de gestión de vehículos."""
+
 import tkinter as tk
 from tkinter import ttk, messagebox
 from DB.dbVehiculos import DBVehiculo

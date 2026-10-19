@@ -1,3 +1,5 @@
+"""Acceso a datos de piezas e inventario."""
+
 from mysql.connector import Error
 
 class DBPieza:

@@ -1,3 +1,5 @@
+"""Acceso a datos de clientes."""
+
 from mysql.connector import Error
 
 class DBCliente:

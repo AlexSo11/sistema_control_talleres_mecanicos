@@ -1,3 +1,5 @@
+"""Acceso a datos de vehículos."""
+
 from mysql.connector import Error
 
 class DBVehiculo:
@@ -90,7 +92,7 @@ class DBVehiculo:
             cursor.execute("""
                 SELECT v.*, c.nombre as cliente_nombre 
                 FROM vehiculos v 
-                LEFT JOIN clientes c ON v.cliente_id = c.cliente_id  # CORREGIDO: era c.id
+                LEFT JOIN clientes c ON v.cliente_id = c.cliente_id
                 WHERE v.marca LIKE %s
             """, (f"%{marca}%",))
             return cursor.fetchall()

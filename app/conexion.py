@@ -1,3 +1,5 @@
+"""Conexión a MySQL para la base de datos ``dbtaller_mecanico``."""
+
 import mysql.connector
 from mysql.connector import Error
 

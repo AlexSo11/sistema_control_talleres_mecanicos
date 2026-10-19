@@ -1,3 +1,5 @@
+"""Acceso a datos de reparaciones y sus piezas."""
+
 from mysql.connector import Error
 
 class DBReparacion:

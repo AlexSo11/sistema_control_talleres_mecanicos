@@ -1,3 +1,5 @@
+"""Interfaz de gestión de reparaciones."""
+
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
@@ -59,17 +61,6 @@ class ReparacionesUI:
         
         # Estado inicial
         self.set_estado("inicio")
-
-    def aplicar_restricciones_rol(self):
-        """Aplicar restricciones según el rol del usuario"""
-        if not self.usuario_actual:
-            return
-            
-        rol = self.usuario_actual.get('rol', 'auxiliar')
-        
-        if rol == 'mecanico':
-            self.btn_editar.config(state="disabled")
-            self.btn_eliminar.config(state="disabled")
 
     def build_ui(self):
         # Frame principal

@@ -24,8 +24,6 @@ from UI.piezas import PiezasUI
 from UI.usuarios import UsuariosUI
 
 from DB.dbUsuario import DBUsuario
-from DB.dbReparaciones import DBReparacion
-from DB.dbPiezas import DBPieza
 
 DB_CONFIG = {
     'host': 'localhost',

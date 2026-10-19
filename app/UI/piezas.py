@@ -1,3 +1,5 @@
+"""Interfaz de gestión de piezas e inventario."""
+
 import tkinter as tk
 from tkinter import ttk, messagebox
 from DB.dbPiezas import DBPieza

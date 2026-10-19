@@ -1,1 +1,1 @@
-#Necesario para la ejecucion del programa pero no contiene ningun código
+"""Paquete de acceso a datos (una clase por entidad)."""
