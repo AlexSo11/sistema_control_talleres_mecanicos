@@ -1,3 +1,5 @@
+"""Interfaz de gestión de usuarios."""
+
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from DB.dbUsuario import DBUsuario
@@ -25,7 +27,7 @@ class UsuariosUI:
         self.var_apellido = tk.StringVar()
         self.var_email = tk.StringVar()
         self.var_telefono = tk.StringVar()
-        self.var_rol = tk.StringVar(value='user')
+        self.var_rol = tk.StringVar(value='auxiliar')
 
         # Construir UI
         self.build_ui()
@@ -64,7 +66,7 @@ class UsuariosUI:
         self.entry_telefono.grid(row=5, column=1, sticky='ew', pady=2)
 
         ttk.Label(form, text="Rol:").grid(row=6, column=0, sticky='w')
-        self.combo_rol = ttk.Combobox(form, values=['user', 'admin'], textvariable=self.var_rol, state='readonly')
+        self.combo_rol = ttk.Combobox(form, values=['admin', 'auxiliar', 'mecanico'], textvariable=self.var_rol, state='readonly')
         self.combo_rol.grid(row=6, column=1, sticky='ew', pady=2)
 
         # Botones
@@ -170,7 +172,7 @@ class UsuariosUI:
         self.var_apellido.set('')
         self.var_email.set('')
         self.var_telefono.set('')
-        self.var_rol.set('user')
+        self.var_rol.set('auxiliar')
 
     def nuevo_usuario(self):
         self.limpiar_form()
@@ -293,5 +295,5 @@ class UsuariosUI:
         self.var_apellido.set(user.get('apellido',''))
         self.var_email.set(user.get('email',''))
         self.var_telefono.set(user.get('telefono',''))
-        self.var_rol.set(user.get('rol','user'))
+        self.var_rol.set(user.get('rol','auxiliar'))
         self.set_estado("buscar")

@@ -1,3 +1,5 @@
+"""Acceso a datos de usuarios y autenticación (hash SHA-256)."""
+
 import hashlib
 from conexion import ConexionDB
 from mysql.connector import Error
@@ -9,7 +11,7 @@ class DBUsuario:
     def __init__(self, conexion: ConexionDB):
         self.conexion = conexion
 
-    def crear_usuario(self, username, password, nombre='', apellido='', email='', telefono='', rol='user'):
+    def crear_usuario(self, username, password, nombre='', apellido='', email='', telefono='', rol='auxiliar'):
         conn = self.conexion.obtener_conexion()
         if conn is None:
             return False, "No hay conexión a la base de datos"
@@ -58,7 +60,7 @@ class DBUsuario:
             cursor.execute("SELECT id, username, nombre, apellido, email, telefono, rol, creado_en FROM usuarios")
             rows = cursor.fetchall()
             return rows
-        except:
+        except Error:
             return []
         finally:
             cursor.close()
@@ -72,7 +74,7 @@ class DBUsuario:
             cursor = conn.cursor(dictionary=True)
             cursor.execute("SELECT id, username, nombre, apellido, email, telefono, rol, creado_en FROM usuarios WHERE id = %s", (user_id,))
             return cursor.fetchone()
-        except:
+        except Error:
             return None
         finally:
             cursor.close()
@@ -86,7 +88,7 @@ class DBUsuario:
             cursor = conn.cursor(dictionary=True)
             cursor.execute("SELECT id, username, nombre, apellido, email, telefono, rol, creado_en FROM usuarios WHERE username = %s", (username,))
             return cursor.fetchone()
-        except:
+        except Error:
             return None
         finally:
             cursor.close()
@@ -138,9 +140,8 @@ class DBUsuario:
             conn.close()
 
     def eliminar_usuario(self, user_id):
-        #validar clientes pero para despues
-        #if self.tiene_clientes_asignados(user_id):
-        #    return False, "No se puede eliminar: el usuario tiene clientes asignados."
+        if self.tiene_clientes_asignados(user_id):
+            return False, "No se puede eliminar: el usuario tiene clientes asignados."
         
         conn = self.conexion.obtener_conexion()
         if conn is None:
